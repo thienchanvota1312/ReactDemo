@@ -8,12 +8,21 @@ class Tables extends Component {
     super(props)
     this.state = {
       products: [
-        { id: 1, Name: 'Car 1', Brand: 'Audi', Stock: 7, Rate: 3.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: <button type="button" class="btn btn-danger">Delete</button> },
-        { id: 2, Name: 'Car 2', Brand: 'Suzuki', Stock: 5, Rate: 2.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: <button type="button" class="btn btn-danger">Delete</button> },
-        { id: 3, Name: 'Car 3', Brand: 'Vinfast', Stock: 8, Rate: 3.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: <button type="button" class="btn btn-danger">Delete</button> },
-        { id: 4, Name: 'Car 4', Brand: 'Mercedes', Stock: 7, Rate: 4.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: <button type="button" class="btn btn-danger">Delete</button> },
+        { id: 1, Name: 'Car 1', Brand: 'Audi', Stock: 7, Rate: 3.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: <button type="button" class="btn btn-danger" onClick={() => this.handleDelete(1)}>Delete</button> },
+        { id: 2, Name: 'Car 2', Brand: 'Suzuki', Stock: 5, Rate: 2.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: <button type="button" class="btn btn-danger" onClick={() => this.handleDelete(2)}>Delete</button> },
+        { id: 3, Name: 'Car 3', Brand: 'Vinfast', Stock: 8, Rate: 3.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: <button type="button" class="btn btn-danger" onClick={() => this.handleDelete(3)}>Delete</button> },
+        { id: 4, Name: 'Car 4', Brand: 'Mercedes', Stock: 7, Rate: 4.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: <button type="button" class="btn btn-danger" onClick={() => this.handleDelete(4)}>Delete</button> },
       ],
     }
+  }
+  
+  handleDelete = (id) => {
+    for (let i = 0; i < this.state.products.length; i++) {
+      if(id==this.state.products[i].id){
+        delete this.state.products[i];
+        break;
+      }
+  }
   }
 
   renderTableData() {
