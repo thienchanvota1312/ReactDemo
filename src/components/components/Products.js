@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Like from '../components/common/like';
+import {getProducts, handleDelete} from '../components/ProductService.js';
 
-class Tables extends Component {
+class Products extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      products: [
-        { id: 1, Name: 'Car 1', Brand: 'Audi', Stock: 7, Rate: 3.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: ''},
-        { id: 2, Name: 'Car 2', Brand: 'Suzuki', Stock: 5, Rate: 2.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: ''},
-        { id: 3, Name: 'Car 3', Brand: 'Vinfast', Stock: 8, Rate: 3.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: ''},
-        { id: 4, Name: 'Car 4', Brand: 'Mercedes', Stock: 7, Rate: 4.5, Like: <FontAwesomeIcon icon= {faHeart} /> , Action: ''},
-      ],
+      products: getProducts()
     }
   }
   handleDelete = (id) => {
@@ -21,18 +16,17 @@ class Tables extends Component {
       products: prevState.products.filter(elm => elm.id !== newsId )
     }));
   }
-
   renderTableData() {
     return this.state.products.map((product, index) => {
-      const { id ,Name, Brand, Stock, Rate, Like, Action } = product
+      const { id ,name, category, stock, rate, like, action } = product
       return (
         <tr key={id}>
           <td>{id}</td>
-          <td>{Name}</td>
-          <td>{Brand}</td>
-          <td>{Stock}</td>
-          <td>{Rate}</td>
-          <td>{Like}</td>
+          <td>{name}</td>
+          <td>{category}</td>
+          <td>{stock}</td>
+          <td>{rate}</td>
+          <td><Like liked ={like}/></td>
           <td><button type="button" class="btn btn-danger" onClick={() => this.handleDelete(id)}>Delete</button></td>
         </tr>
       )
@@ -56,4 +50,4 @@ class Tables extends Component {
   }
 }
 
-export default Tables
+export default Products
