@@ -1,9 +1,9 @@
 const products = [
-    { id: 1, name: 'vinfast', category: 'car1', stock: 7, rate: 3.5 , like: false , action: '' },
-    { id: 2, name: 'bmw', category: 'car2', stock: 5, rate: 4.5 , like: false , action: '' },
-    { id: 3, name: 'kia', category: 'car3', stock: 8, rate: 3.5 , like: false , action: '' },
-    { id: 4, name: 'porsche', category: 'car4', stock: 7, rate: 2.5, like: true , action: '' },
-    { id: 5, name: 'bugatti', category: 'car5', stock: 7, rate: 4.5, like: true , action: '' }
+    { Id: 1, Name: 'Motor1', Category: {_id: 14 , name: "suzuki"}, Stock: 7, Rate: 3.5 , Like: false , Action: '' },
+    { Id: 2, Name: 'Motor2', Category: {_id: 73 , name: "honda"}, Stock: 5, Rate: 4.5 , Like: false , Action: '' },
+    { Id: 3, Name: 'ECar', Category: {_id: 12 , name: "vinfast"}, Stock: 8, Rate: 3.5 , Like: false , Action: '' },
+    { Id: 4, Name: 'SCar1', Category: {_id: 6 , name: "porsche"}, Stock: 7, Rate: 2.5, Like: true , Action: '' },
+    { Id: 5, Name: 'SCar2', Category: {_id: 7 , name: "bugatti"}, Stock: 7, Rate: 4.5, Like: true , Action: '' }
   ];
 
 function getProducts() {

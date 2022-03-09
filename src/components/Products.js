@@ -10,32 +10,28 @@ class Products extends Component {
       products: getProducts()
     }
   }
-  handleDelete = (id) => {
-    const newsId = id;
+  handleDelete = (product) => {
     this.setState(prevState => ({
-      products: prevState.products.filter(elm => elm.id !== newsId )
+      products: prevState.products.filter(elm => elm !== product )
     }));
   }
   renderTableData() {
-    return this.state.products.map((product, index) => {
-      const { id ,name, category, stock, rate, like, action } = product
-      return (
-        <tr key={id}>
-          <td>{id}</td>
-          <td>{name}</td>
-          <td>{category}</td>
-          <td>{stock}</td>
-          <td>{rate}</td>
-          <td><Like liked ={like}/></td>
-          <td><button type="button" class="btn btn-danger" onClick={() => this.handleDelete(id)}>Delete</button></td>
+    return this.state.products.map((product) => 
+        <tr key={product.Id}>
+          <td>{product.Id}</td>
+          <td>{product.Name}</td>
+          <td>{product.Category.name}</td>
+          <td>{product.Stock}</td>
+          <td>{product.Rate}</td>
+          <td><Like liked ={product.Like}/></td>
+          <td><button type="button" class="btn btn-danger" onClick={() => this.handleDelete(product)}>Delete</button></td>
         </tr>
-      )
-    })
+    )
   }
 
   renderTableHeader() {
     const header = Object.keys(this.state.products[0])
-    return header.map((key, index) => <th key={index}>{key.toUpperCase()}</th>)
+    return header.map((key, index) => <th key={index}>{key}</th>)
   }
 
   render() {

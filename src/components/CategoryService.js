@@ -1,9 +1,9 @@
 const categories = [
-    { _id: 14, name: 'car1' },
-    { _id: 73, name: 'car2' },
-    { _id: 12, name: 'car3' },
-    { _id: 6, name: 'car4' },
-    { _id: 7, name: 'car5' }
+    { _id: 14, name: 'suzuki' },
+    { _id: 73, name: 'honda' },
+    { _id: 12, name: 'vinfast' },
+    { _id: 6, name: 'porsche' },
+    { _id: 7, name: 'bugatti' }
   ];
   
   function getCategories() {
