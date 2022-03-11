@@ -11,7 +11,7 @@ class Categories extends Component {
     }
     
     render() {
-        return this.state.categories.map((category) => 
+        return this.state.categories.map((category) =>        
         <ListGroup>
         <ListGroup.Item
           as="li"
@@ -19,7 +19,6 @@ class Categories extends Component {
         >
           <div className="ms-2 me-auto">
             <div className="fw-bold">{category.name}</div>
-            _id = {category._id}
           </div>
         </ListGroup.Item>
         </ListGroup>
@@ -28,3 +27,4 @@ class Categories extends Component {
   }
   
   export default Categories
+  
