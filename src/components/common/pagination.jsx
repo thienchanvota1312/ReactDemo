@@ -1,24 +1,45 @@
-import React, {useEffect, useState} from 'react';
-import _ from 'lodash';
+import React from "react";
+import _ from "lodash";
 
+const Pagination = (props) => {
+  const { totalItems, pageSize, currentPage, onPageChange } = props;
 
-const Pagination = props => {
-  const {totalItems, pageSize, onPageChange} = props;
-  const totalPages = totalItems/pageSize;
-  const pages = _.range(1,totalPages+1);
+  const totalPages = Math.ceil(totalItems / pageSize);
+  if (totalPages === 1) return null;
+  const pages = _.range(1, totalPages + 1);
 
   return (
-    <nav aria-label="Page navigation example">
+    <div>
+      <nav aria-label="...">
         <ul className="pagination">
-      <li className="page-item"><a class="page-link" href="#">Previous</a></li>
-      {pages.map(page => (
-      <li className="page item"><a class="page-link"
-       onClick={()=>onPageChange(page)} href="#">{page}</a></li>
-      ))} 
-      <li className="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul>
+          <li className={
+                currentPage === 1 ? "page-item active" : "page-item"
+              } onClick={() => {onPageChange(currentPage-1)}}><a class="page-link" href="#">Prev</a></li>
+          {pages.map((page) => (
+            <li
+              key={page}
+              className={
+                page === currentPage ? "page-item active" : "page-item"
+              }
+            >
+              <a
+                className="page-link"
+                onClick={() => {
+                  onPageChange(page);
+                }}
+              >
+                {page}
+              </a>
+            </li>
+          ))}
+          <li className={
+                currentPage === totalPages ? "page-item active" : "page-item"
+              } onClick={() => {onPageChange(currentPage+1)}}><a class="page-link" href="#">Next</a></li>
+        </ul>
       </nav>
+    </div>
   );
 };
+
 
 export default Pagination;

@@ -1,4 +1,4 @@
-const categories = [
+export const categories = [
     { _id: 14, name: 'suzuki' },
     { _id: 73, name: 'honda' },
     { _id: 12, name: 'vinfast' },
@@ -6,8 +6,6 @@ const categories = [
     { _id: 7, name: 'bugatti' }
   ];
   
-  function getCategories() {
-    return categories;
-  }
-  
-  export { getCategories };
+export function getCategories() {
+  return categories.filter((g) => g);
+}

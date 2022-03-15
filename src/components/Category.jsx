@@ -1,6 +1,6 @@
 import React from "react";
 
-const Categories = (props) => {
+const Category = (props) => {
   const { items, textProperty, valueProperty, onItemSelect, selectedItem } =
     props;
   return (
@@ -20,4 +20,5 @@ const Categories = (props) => {
   );
 };
 
-export default Categories;
+export default Category;
+  

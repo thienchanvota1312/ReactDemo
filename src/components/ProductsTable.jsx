@@ -7,21 +7,23 @@ const ProductsTable = (props) => {
     <table className="table">
       <thead>
         <tr>
-          <th onClick={() => onSort("title")}>Title</th>
-          <th onClick={() => onSort("category")}>Genre</th>
-          <th onClick={() => onSort("numberInStock")}>Stock</th>
-          <th onClick={() => onSort("dailyRentalRate")}>Rate</th>
+          <th onClick={() => onSort("Id")}>Id</th>
+          <th onClick={() => onSort("Name")}>Name</th>
+          <th onClick={() => onSort("Category")}>Category</th>
+          <th onClick={() => onSort("Stock")}>Stock</th>
+          <th onClick={() => onSort("Rate")}>Rate</th>
           <th>Like</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         {products.map((product) => (
-          <tr key={product._id}>
-            <td>{product.title}</td>
-            <td>{product.category.name}</td>
-            <td>{product.numberInStock}</td>
-            <td>{product.dailyRentalRate}</td>
+          <tr key={product. Id}>
+            <td>{product.Id}</td>
+            <td>{product.Name}</td>
+            <td>{product.Category.name}</td>
+            <td>{product.Stock}</td>
+            <td>{product.Rate}</td>
             <td>
               <Like liked={product.liked} onClick={() => onLike(product)} />
             </td>

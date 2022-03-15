@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {getProducts} from './ProductService.js';
-import Pagination from './common/pagination';
-import Categories from './Categories';
-import { getCategories } from "./CategoryService.js";
-import ProductTables from './ProductTables.jsx';
-import { paginate } from "../utils/paginate.js";
+import React, { Component } from "react";
+import { getProducts } from "./ProductService";
+import Pagination from "./common/pagination";
+import { paginate } from "./utils/paginate";
+import Category from "./Category";
+import { getCategories } from "./CategoryService";
+import ProductsTable from "./ProductsTable";
 import _ from "lodash";
-
 
 class Products extends Component {
   state = {
     products: getProducts(),
     currentPage: 1,
-    pageSize: 4,
+    pageSize: 3,
     categories: getCategories(),
     selectedGenre: null,
     sortColumn: {
@@ -23,17 +21,10 @@ class Products extends Component {
   };
 
   handleDelete = (product) => {
-    const products = this.state.products.filter((m) => m._id !== product._id);
-    this.setState({ products });
-  };
-  handleLike = (product) => {
-    const products = [...this.state.products];
-    const index = products.indexOf(product);
-    products[index] = { ...products[index] };
-    products[index].liked = !products[index].liked;
-    this.setState({ products });
-  };
-
+    this.setState(prevState => ({
+      products: prevState.products.filter(elm => elm !== product )
+    }));
+  }
   componentDidMount() {
     const categories = [{ name: "All Categories" }, ...getCategories()];
     this.setState({
@@ -41,6 +32,14 @@ class Products extends Component {
       categories,
     });
   }
+
+  handleLike = (product) => {
+    const products = [...this.state.products];
+    const index = products.indexOf(product);
+    products[index] = { ...products[index] };
+    products[index].liked = !products[index].liked;
+    this.setState({ products });
+  };
 
   handleSort = (path) => {
     const sortColumn = { ...this.state.sortColumn };
@@ -70,11 +69,12 @@ class Products extends Component {
       selectedGenre,
       sortColumn,
     } = this.state;
+    if (count === 0) return <p>There are no products in the database.</p>;
 
     const filtered =
       selectedGenre && selectedGenre._id
         ? allProducts.filter(
-            (product) => product.category._id === selectedGenre._id
+            (product) => product.Category._id === selectedGenre._id
           )
         : allProducts;
 
@@ -86,7 +86,7 @@ class Products extends Component {
       <React.Fragment>
         <div className="row">
           <div className="col-3">
-            <Categories
+            <Category
               items={categories}
               selectedItem={this.state.selectedGenre}
               onItemSelect={this.handleClickGenre}
@@ -94,11 +94,11 @@ class Products extends Component {
           </div>
           <div className="col-9">
             <p>Showing {filtered.length} products in the database.</p>
-            <ProductTables
+            <ProductsTable
               products={products}
+              onLike={this.handleLike}
               onDelete={this.handleDelete}
               onSort={this.handleSort}
-              onLike={this.handleLike}
             />
             <Pagination
               totalItems={filtered.length}
@@ -113,9 +113,12 @@ class Products extends Component {
   }
 }
 
-Categories.defaultProps = {
+Category.defaultProps = {
   textProperty: "name",
   valueProperty: "_id",
 };
 
 export default Products;
+
+
+
