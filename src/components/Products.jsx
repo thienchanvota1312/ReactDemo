@@ -6,6 +6,8 @@ import Category from "./Category";
 import { getCategories } from "./CategoryService";
 import ProductsTable from "./ProductsTable";
 import _ from "lodash";
+import "font-awesome/css/font-awesome.css";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 class Products extends Component {
   state = {
@@ -50,6 +52,13 @@ class Products extends Component {
       sortColumn.order = "asc";
     }
     this.setState({ sortColumn });
+  };
+
+  handleIcon = (path) => {
+    const sortColumn = { ...this.state.sortColumn };
+    if (path !== sortColumn.path) return null;
+    if (sortColumn.order === 'asc') return <i className ="fa fa-arrow-up" ></i> 
+    return <i className ="fa fa-arrow-down" ></i> 
   };
 
   handlePageChange = (page) => {
@@ -99,6 +108,7 @@ class Products extends Component {
               onLike={this.handleLike}
               onDelete={this.handleDelete}
               onSort={this.handleSort}
+              sortIcon={this.handleIcon}
             />
             <Pagination
               totalItems={filtered.length}

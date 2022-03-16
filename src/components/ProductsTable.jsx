@@ -1,21 +1,21 @@
 import React from "react";
 import Like from "./common/like";
+import TableHeader from "./common/TableHeader";
 
 const ProductsTable = (props) => {
-  const { products, onLike, onDelete, onSort } = props;
+  const { products, onLike, onDelete, onSort, sortIcon } = props;
+  const columns = [
+    {path:'Id', label:'Id'},
+    {path:'Name', label:'Name'},
+    {path:'Category.name', label:'Category'},
+    {path:'Stock', label:'Stock'},
+    {path:'Rate', label:'Rate'},
+    {key:'like', label:'Like'},
+    {key:'delete', label:'Delete'}
+  ]
   return (
     <table className="table">
-      <thead>
-        <tr>
-          <th onClick={() => onSort("Id")}>Id</th>
-          <th onClick={() => onSort("Name")}>Name</th>
-          <th onClick={() => onSort("Category")}>Category</th>
-          <th onClick={() => onSort("Stock")}>Stock</th>
-          <th onClick={() => onSort("Rate")}>Rate</th>
-          <th>Like</th>
-          <th>Action</th>
-        </tr>
-      </thead>
+      <TableHeader columns = {columns} onSort = {onSort} sortIcon = {sortIcon} />
       <tbody>
         {products.map((product) => (
           <tr key={product. Id}>
