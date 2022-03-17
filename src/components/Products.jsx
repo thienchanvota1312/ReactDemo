@@ -7,7 +7,7 @@ import { getCategories } from "./CategoryService";
 import ProductsTable from "./ProductsTable";
 import _ from "lodash";
 import "font-awesome/css/font-awesome.css";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+
 
 class Products extends Component {
   state = {
